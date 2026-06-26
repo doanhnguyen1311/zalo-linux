@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zalo Desktop</title>
+    <link rel="stylesheet" href="./splash.css" />
+  </head>
+  <body>
+    <main class="shell" data-state="loading">
+      <img class="icon" src="../../assets/icons/256x256.png" alt="" />
+      <h1>Zalo Desktop</h1>
+      <div class="loading" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p class="status loading-text">Loading Zalo Web...</p>
+      <p class="status offline-text">Zalo Web is offline or unreachable.</p>
+      <button class="reload" type="button">Reload</button>
+    </main>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const state = params.get("state") === "offline" ? "offline" : "loading";
+      const shell = document.querySelector(".shell");
+      shell.dataset.state = state;
+
+      document.querySelector(".reload").addEventListener("click", () => {
+        window.zaloDesktop?.reload();
+      });
+    </script>
+  </body>
+</html>

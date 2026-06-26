@@ -1,0 +1,45 @@
+appId: com.zalo.desktop
+productName: Zalo Desktop
+artifactName: ${productName}-${version}-${arch}.${ext}
+asar: true
+
+directories:
+  output: dist
+  buildResources: assets
+
+files:
+  - package.json
+  - out/**
+  - src/renderer/**
+  - assets/icons/**
+
+extraResources:
+  - from: assets
+    to: assets
+
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+    - target: deb
+      arch:
+        - x64
+  category: Network
+  icon: assets/icons
+  maintainer: Zalo Desktop Community <maintainer@example.com>
+  syncDesktopName: true
+  synopsis: Ubuntu desktop wrapper for Zalo Web
+  description: Unofficial Ubuntu desktop wrapper for the official Zalo Web client.
+  desktop:
+    entry:
+      GenericName: Messenger
+      Keywords: Zalo;Chat;Messenger;Vietnam;
+
+deb:
+  depends:
+    - libnotify4
+    - libnss3
+    - libxss1
+    - libxtst6
+    - xdg-utils
